@@ -1,5 +1,6 @@
 package pl.smoothiesshop.businessowner.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Builder
@@ -8,7 +9,10 @@ import lombok.*;
 @Getter
 @Setter
 public class SmoothieDetailDto {
+    @NotNull
     private int id;
+    @NotNull
     private String name;
+    @NotNull
     private String description;
 }

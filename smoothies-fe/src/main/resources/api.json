@@ -1,1 +1,229 @@
-{"openapi":"3.0.1","info":{"title":"Smoothies API","description":"Smoothies Shop API","version":"2.0"},"servers":[{"url":"http://localhost:8080","description":"Generated server url"}],"paths":{"/api/business/smoothies/details/edit":{"post":{"tags":["business-owner-controller"],"operationId":"editSmoothies","parameters":[{"name":"arg0","in":"query","required":true,"schema":{"$ref":"#/components/schemas/SmoothieDetailDto"}}],"responses":{"200":{"description":"OK","content":{"application/json":{"schema":{"$ref":"#/components/schemas/OperationStatusDto"}}}}}}},"/api/customer/smooties/list":{"get":{"tags":["customer-controller"],"operationId":"listSmoothies","parameters":[{"name":"arg0","in":"query","required":true,"schema":{"type":"string"}}],"responses":{"200":{"description":"OK","content":{"*/*":{"schema":{"type":"string"}}}}}}},"/api/business/smoothies/list":{"get":{"tags":["business-owner-controller"],"summary":"List smoothies","operationId":"listSmoothies_1","parameters":[{"name":"page","in":"query","required":true,"schema":{"type":"integer","format":"int32"}},{"name":"pageSize","in":"query","required":true,"schema":{"type":"integer","format":"int32"}}],"responses":{"200":{"description":"Got the smoothies","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ListAllSmoothiesResponse"}}}}}}},"/api/business/smoothies/details/delete/{id}":{"delete":{"tags":["business-owner-controller"],"operationId":"deleteSmoothiesDetails","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int32"}}],"responses":{"200":{"description":"OK","content":{"application/json":{"schema":{"$ref":"#/components/schemas/OperationStatusDto"}}}}}}}},"components":{"schemas":{"SmoothieDetailDto":{"type":"object","properties":{"id":{"type":"integer","format":"int32"},"name":{"type":"string"},"description":{"type":"string"}}},"OperationStatusDto":{"type":"object","properties":{"status":{"type":"string","enum":["SUCCESS","ERROR"]}}},"ListAllSmoothiesResponse":{"type":"object","properties":{"smoothies":{"$ref":"#/components/schemas/ListSmoothieDto"},"totalResultsCount":{"type":"integer","format":"int64"}}},"ListSmoothieDto":{"type":"object","properties":{"empty":{"type":"boolean"},"lazy":{"type":"boolean"},"async":{"type":"boolean"},"traversableAgain":{"type":"boolean"},"sequential":{"type":"boolean"},"ordered":{"type":"boolean"},"singleValued":{"type":"boolean"},"distinct":{"type":"boolean"},"orNull":{"$ref":"#/components/schemas/SmoothieDto"},"memoized":{"type":"boolean"}}},"SmoothieDto":{"type":"object","properties":{"id":{"type":"integer","format":"int32"},"name":{"type":"string"},"smoothieDetails":{"type":"array","items":{"$ref":"#/components/schemas/SmoothieDetailDto"}}}}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Smoothies API",
+    "description": "Smoothies Shop API",
+    "version": "2.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/business/smoothies/details/edit": {
+      "post": {
+        "tags": [
+          "business-owner-controller"
+        ],
+        "operationId": "editSmoothies",
+        "parameters": [
+          {
+            "name": "arg0",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SmoothieDetailDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStatusDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/customer/smooties/list": {
+      "get": {
+        "tags": [
+          "customer-controller"
+        ],
+        "operationId": "listSmoothies",
+        "parameters": [
+          {
+            "name": "arg0",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/business/smoothies/list": {
+      "get": {
+        "tags": [
+          "business-owner-controller"
+        ],
+        "summary": "List smoothies",
+        "operationId": "listSmoothies_1",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get smoothies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAllSmoothiesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/business/smoothies/details/delete/{id}": {
+      "delete": {
+        "tags": [
+          "business-owner-controller"
+        ],
+        "operationId": "deleteSmoothiesDetails",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationStatusDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SmoothieDetailDto": {
+        "required": [
+          "description",
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "OperationStatusDto": {
+        "required": [
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "SUCCESS",
+              "ERROR"
+            ]
+          }
+        }
+      },
+      "ListAllSmoothiesResponse": {
+        "required": [
+          "smoothies",
+          "totalResultsCount"
+        ],
+        "type": "object",
+        "properties": {
+          "smoothies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SmoothieDto"
+            }
+          },
+          "totalResultsCount": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "SmoothieDto": {
+        "required": [
+          "id",
+          "name",
+          "smoothieDetails"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "smoothieDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SmoothieDetailDto"
+            }
+          }
+        }
+      }
+    }
+  }
+}

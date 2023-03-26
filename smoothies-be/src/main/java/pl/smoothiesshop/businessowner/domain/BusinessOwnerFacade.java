@@ -17,6 +17,7 @@ import pl.smoothiesshop.repository.SmoothieDetailsRepository;
 import pl.smoothiesshop.repository.SmoothiesRepository;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @AllArgsConstructor
@@ -33,14 +34,14 @@ public class BusinessOwnerFacade implements BusinessOwnerApi {
     @Transactional
     public Try<ListAllSmoothiesResponse> listAllSmoothies(int page, int pageSize) {
         return Try.of(() -> {
-            final PageRequest pageRequest = PageRequest.of(page,pageSize, Sort.by("name"));
+            final PageRequest pageRequest = PageRequest.of(page, pageSize, Sort.by("name"));
             final Page<Smoothie> smoothiesRepositoryAll = smoothiesRepository.findAll(pageRequest);
-            final List<Smoothie> smoothies = List.ofAll(smoothiesRepositoryAll);
+
             return ListAllSmoothiesResponse.builder()
                     .totalResultsCount(smoothiesRepositoryAll.getTotalElements())
-                    .smoothies(smoothies
+                    .smoothies(smoothiesRepositoryAll.stream()
                             .map(smoothie -> modelMapper.map(smoothie, SmoothieDto.class))
-                            .collect(List.collector()))
+                            .toList())
                     .build();
         });
     }

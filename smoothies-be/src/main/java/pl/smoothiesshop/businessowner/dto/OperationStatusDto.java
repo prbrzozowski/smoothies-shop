@@ -1,5 +1,6 @@
 package pl.smoothiesshop.businessowner.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Builder
@@ -8,6 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 public class OperationStatusDto {
+    @NotNull
     private Status status;
 
     public enum Status {

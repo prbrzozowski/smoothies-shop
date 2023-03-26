@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,14 @@ import pl.smoothiesshop.businessowner.dto.SmoothieDetailDto;
 
 @RestController()
 @AllArgsConstructor
+@Slf4j
 public class BusinessOwnerController {
     private final BusinessOwnerApi businessOwnerApi;
 
-
+    @CrossOrigin(origins = "http://localhost:4200", methods = RequestMethod.GET)
     @Operation(summary = "List smoothies")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Got the smoothies",
+            @ApiResponse(responseCode = "200", description = "Get smoothies",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = ListAllSmoothiesResponse.class))})})
     @GetMapping(path = "/api/business/smoothies/list", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,6 +32,9 @@ public class BusinessOwnerController {
                                                                   @RequestParam(name = "pageSize") int pageSize) {
         final ListAllSmoothiesResponse listAllSmoothies = businessOwnerApi.listAllSmoothies(page, pageSize)
                 .getOrElseThrow(ex -> new RuntimeException("TODO", ex));
+
+        // TODO implement exception handler for the runtime exeptions.
+        // TODO put the exceptions to the log. Any information about the stacktrace must not be passed outside.
         return ResponseEntity.ok(listAllSmoothies);
     }
 

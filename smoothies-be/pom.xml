@@ -11,6 +11,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build>UTF-8</project.build>
+        <spring-boot.run.jvmArguments>-Dfile.encoding=UTF-8</spring-boot.run.jvmArguments>
     </properties>
 
     <dependencies>
@@ -77,6 +79,7 @@
             <artifactId>modelmapper-vavr-module</artifactId>
             <version>1.0.4</version>
         </dependency>
+
 
     </dependencies>
     <build>

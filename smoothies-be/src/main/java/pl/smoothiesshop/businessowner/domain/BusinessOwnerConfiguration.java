@@ -18,19 +18,4 @@ public class BusinessOwnerConfiguration {
         return new BusinessOwnerFacade(smoothiesRepository, smoothieDetailsRepository, modelMapper);
     }
 
-
-    //TODO move it to some other place
-    @Bean
-    public ModelMapper modelMapper() {
-        final ModelMapper modelMapper = new ModelMapper();
-        // TODO może trzeba to wyrzucić bo i tak nie działa
-        modelMapper.registerModule(new VavrModule());
-        return modelMapper;
-    }
-
-    //TODO move it to some other place
-    @Bean
-    io.vavr.jackson.datatype.VavrModule vavrModule() {
-        return new io.vavr.jackson.datatype.VavrModule();
-    }
 }

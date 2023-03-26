@@ -22,9 +22,6 @@ public class SmoothieDetail {
     @Column(name = "name", nullable = false)
     private String name;
 
-//    @Column(name = "value", nullable = false)
-//    private String value;
-//
     @Column(name = "description", nullable = false)
     private String description;
 }
