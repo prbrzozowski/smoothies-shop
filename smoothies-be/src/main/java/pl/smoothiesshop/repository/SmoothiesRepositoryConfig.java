@@ -1,0 +1,2 @@
+package pl.smoothiesshop.repository;
+

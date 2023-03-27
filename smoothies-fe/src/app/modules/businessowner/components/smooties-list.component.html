@@ -1,0 +1,45 @@
+<p-table [value]="smoothies"
+         [scrollable]="true"
+         [rows]="5"
+         [totalRecords]="totalSmoothiesCount"
+         [showCurrentPageReport]="true"
+         [paginator]="true"
+         [rowsPerPageOptions]="[5,10,15]"
+         [(first)]="first"
+         [(rows)]="rows"
+         [lazy]="true"
+         (onLazyLoad)="loadSmoothies($event)"
+         [loading]="smoothiesBeingLoaded()">
+  <ng-template pTemplate="caption">
+    Dostępne Smoothies
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th scope="col" class="smoothie-name-header">Nazwa</th>
+      <th scope="col" class="smoothie-description-header">Opis</th>
+      <th scope="col" class="smoothie-details-header">Szczegóły</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-smoothie>
+    <tr>
+      <td>
+        {{smoothie.name}}
+      </td>
+      <td>
+        {{smoothie.description}}
+      </td>
+      <td>
+        <div *ngFor="let smoothieDetail of smoothie.smoothieDetails">
+          {{smoothieDetail.name}} - {{smoothieDetail.description}}
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+      <td>
+        Brak wyników
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
